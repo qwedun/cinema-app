@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "outDir": "./dist/",
+    "noImplicitAny": true,
+    "module": "ESNext",
+    "target": "es5",
+    "jsx": "react-jsx",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@app/*": ["./src/app*"],
+      "@features/*": ["./src/features/*"],
+      "@shared/*": ["./src/shared/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@entities/*": ["./src/entities/*"]
+    }
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "CommonJS"
+    }
+  }
+}
