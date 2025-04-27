@@ -12,11 +12,12 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@app/*": ["./src/app*"],
-      "@features/*": ["./src/features/*"],
-      "@shared/*": ["./src/shared/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@entities/*": ["./src/entities/*"]
+      "@/app/*": ["./src/app/*"],
+      "@/features/*": ["./src/features/*"],
+      "@/shared/*": ["./src/shared/*"],
+      "@/pages/*": ["./src/pages/*"],
+      "@/entities/*": ["./src/entities/*"],
+      "@/widgets/*": ["./src/widgets/*"]
     }
   },
   "ts-node": {

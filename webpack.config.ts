@@ -57,7 +57,18 @@ export default (env: Env) => {
                 },
                 {
                     test: /\.s[ac]ss$/i,
-                    use: ["style-loader", "css-loader", "sass-loader"],
+                    use: [
+                        "style-loader",
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                modules: {
+                                    namedExport: false
+                                }
+                            }
+                        },
+                        "sass-loader"
+                    ],
                 },
                 {
                     test: /\.(png|jpg|jpeg|gif)$/i,
@@ -68,7 +79,7 @@ export default (env: Env) => {
                     use: [
                         {
                             loader: '@svgr/webpack',
-                            options: {icon: true}
+                            options: { icon: true }
                         }
                     ],
                 }
