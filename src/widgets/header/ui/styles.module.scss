@@ -1,0 +1,18 @@
+.header {
+  position: sticky;
+  display: flex;
+  justify-content: space-between;
+  height: 75px;
+  background-color: var(--color-gray-100);
+  top: 0;
+  transition-property: top;
+  transition-duration: (0.3s);
+
+}
+.fixed {
+  transition-property: top;
+  transition-duration: (0.3s);
+
+  top: -75px;
+}
+

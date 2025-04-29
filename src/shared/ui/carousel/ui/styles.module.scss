@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  position: relative;
+  min-width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  padding: 20px;
+}
+.window {
+  display: flex;
+  transition-property: transform;
+  transition-duration: 300ms;
+}
+.card {
+  display: inline-block;
+  height: 160px;
+  min-width: 160px;
+  margin: 5px;
+  background-color: white;
+}
+.button {
+  position: absolute;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 70px;
+  z-index: 3;
+  top: 50%;
+  transition: width 200ms, height 200ms;
+  border-radius: 10px;
+  backdrop-filter: blur(15px);
+  background: hsla(258,4%,55%,.32);
+  &:hover {
+    width: 60px;
+    height: 80px;
+  }
+
+
+}
+.left {
+  left: 40px
+}
+.right {
+  right: 40px;
+}
+.rightArrow {
+  transform: rotate(180deg);
+}

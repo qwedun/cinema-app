@@ -29,3 +29,5 @@ yarn-error.log*
 /.idea/watcherTasks.xml
 /.idea/kino.iml
 /.idea/vcs.xml
+/process.env
+/CONSTS.env.local

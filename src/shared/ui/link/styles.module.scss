@@ -1,0 +1,15 @@
+.highlighted {
+
+}
+.link {
+  color: var(--color-white);
+  height: 100%;
+  opacity: .6;
+  font-weight: bold;
+  font-size: 16px;
+  transition: opacity;
+  transition-duration: 200ms;
+  &:hover {
+    opacity: 0.9;
+  }
+}

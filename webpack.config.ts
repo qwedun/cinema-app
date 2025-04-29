@@ -1,11 +1,12 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import {BundleAnalyzerPlugin} from 'webpack-bundle-analyzer';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import webpack, {Configuration} from 'webpack';
 import type {Configuration as DevServerConfiguration} from 'webpack-dev-server';
 import ReactRefreshPlugin from "@pmmmwh/react-refresh-webpack-plugin";
 import ReactRefreshTs from "react-refresh-typescript";
+import Dotenv from 'dotenv-webpack';
 
 type Mode = 'production' | 'development';
 
@@ -24,7 +25,8 @@ export default (env: Env) => {
 
     if (isDev) {
         plugins.push(new ForkTsCheckerWebpackPlugin());
-        plugins.push(new ReactRefreshPlugin())
+        plugins.push(new ReactRefreshPlugin());
+        plugins.push(new Dotenv())
     } else {
         plugins.push(new BundleAnalyzerPlugin());
     }
@@ -86,7 +88,7 @@ export default (env: Env) => {
             ],
         },
         resolve: {
-            extensions: ['.tsx', 'ts', '.js'],
+            extensions: ['.tsx', '.ts', '.js'],
             alias: {
                 '@': path.resolve(__dirname, 'src')
             }
