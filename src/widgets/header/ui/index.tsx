@@ -1,5 +1,6 @@
 import { Navigation } from "@/widgets/header/ui/navigation";
 import { useHeader } from "@/widgets/header/lib/use-header";
+import { SearchIcon } from "@/shared";
 import styles from './styles.module.scss';
 
 export const Header = () => {
@@ -11,7 +12,7 @@ export const Header = () => {
     return (
         <header className={className}>
             <Navigation/>
-            <div style={{color: 'white'}}>123</div>
+            <SearchIcon height={24} width={24} opacity='0.5'/>
         </header>
     )
 }

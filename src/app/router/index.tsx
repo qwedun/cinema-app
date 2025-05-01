@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Layout, Films, Cartoons, Series, Home } from "@/pages";
+import { Layout, Films, Cartoons, Series, Home, Film } from "@/pages";
 
 export const Router = () => {
     return (
@@ -7,6 +7,7 @@ export const Router = () => {
             <Route path='/' element={<Layout/>}>
                 <Route index element={<Home/>}/>
                 <Route path='films' element={<Films/>}/>
+                <Route path='films/:id' element={<Film/>}/>
                 <Route path='cartoons' element={<Cartoons/>}/>
                 <Route path='series' element={<Series/>}/>
             </Route>

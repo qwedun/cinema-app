@@ -1,0 +1,13 @@
+.head {
+  align-items: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--color-white);
+  margin-left: 40px;
+  margin-top: 10px;
+  svg {
+    margin-left: 20px;
+    transform: rotate(180deg);
+  }
+
+}

@@ -1,0 +1,19 @@
+.container {
+  position: relative;
+  min-width: 100%;
+  max-width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+
+  a {
+    display: flex;
+    margin-right: 8px;
+    align-items: center;
+  }
+}
+
+.window {
+  transition: transform 200ms ease-out  ;
+  display: flex;
+  width: max-content;
+}

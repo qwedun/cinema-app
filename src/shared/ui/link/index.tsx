@@ -4,12 +4,11 @@ import styles from './styles.module.scss'
 
 interface ILinkProps {
     to: string,
-    children: string,
+    children: string | ReactNode,
     highlighted?: boolean,
-    icon?: ReactNode,
 }
 
-export const RouteLink = ({highlighted, icon, to, children}: ILinkProps) => {
+export const RouteLink = ({highlighted, to, children}: ILinkProps) => {
 
     const className = highlighted
         ? `${styles.highlighted} ${styles.link}`
@@ -17,7 +16,6 @@ export const RouteLink = ({highlighted, icon, to, children}: ILinkProps) => {
 
     return (
         <Link to={to} className={className}>
-            {icon}
             {children}
         </Link>
     )

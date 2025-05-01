@@ -1,34 +1,38 @@
-import styles from './styles.module.scss'
+import styles from './styles.module.scss';
+import { Link } from 'react-router-dom';
 import { RefObject } from "react";
 
 interface IMovieCardPropsInterface {
-    cardRef: RefObject<null>;
+    cardRef?: RefObject<HTMLDivElement>;
     imgUrl: string;
     name: string;
     year: number;
-    length: number;
+    length: number | undefined;
     rating: number;
+    id: number;
 }
 
 export const MovieCard = (Props: IMovieCardPropsInterface) => {
 
     const {
         cardRef, imgUrl, name,
-        year, length, rating
+        year, length, rating, id
     } = Props;
 
-    const time = Math.floor(length / 60)
+    let time;
+
+    if (length) time = Math.floor(length / 60)
         ? `${Math.floor(length/ 60)} ч ${length % 60} мин`
-        : `${length} мин`
+       : `${length} мин`
 
     return (
-        <div className={styles.container} ref={cardRef}>
+        <Link className={styles.container} to={`films/${id}`}>
             <div className={styles.imageWrapper}>
                 <img width='100%' height='100%' src={imgUrl}/>
             </div>
             <div className={styles.information}>
                 <span className={styles.rating}>
-                    {rating.toFixed(2)}
+                    {rating.toFixed(1)}
                 </span>
                 <div>
                     <h3>
@@ -42,6 +46,6 @@ export const MovieCard = (Props: IMovieCardPropsInterface) => {
                     </span>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

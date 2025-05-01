@@ -405,13 +405,31 @@ export interface MovieEntity {
     poster: ShortImage;
     backdrop: ShortImage;
     rating: Rating | null;
+    ageRating: number;
     votes: number;
     movieLength: number | null;
-    genres: string[];
-    countries: string[];
+    genres: Genre[];
+    countries: Country[];
     releaseYears: number[];
+    persons: Person[];
+    facts: FactInMovie[];
+    similarMovies: SimilarMovie[];
+}
+export interface SimilarMovie {
+    id: number;
+    name?:string;
+    type?:string;
+    poster?: ShortImage;
+    rating?: Rating;
+    year?: number;
+}
+export interface Country {
+    name: string;
 }
 
+export interface Genre {
+    name: string;
+}
 export interface SearchMovieEntity
     extends Omit<MovieEntity, 'backdrop' | 'poster' | 'rating'> {
     backdrop: string;
@@ -516,33 +534,13 @@ export interface FactInPerson {
     value?: string;
 }
 
-export interface MovieInPerson {
-    id: number;
-    name?: string | null;
-    alternativeName?: string | null;
-    rating?: number | null;
-    general?: boolean | null;
-    description?: string | null;
-    enProfession?: string | null;
-}
-
 export interface Person {
     id: number;
     name?: string | null;
     enName?: string | null;
     photo?: string | null;
-    sex?: string | null;
-    growth?: number | null;
-    birthday?: string | null;
-    death?: string | null;
-    age?: number | null;
-    birthPlace?: BirthPlace[];
-    deathPlace?: DeathPlace[];
-    spouses?: Spouses;
-    countAwards?: number;
-    profession?: Profession[];
-    facts?: FactInPerson[];
-    movies?: MovieInPerson[];
+    profession?: string | null;
+    enProfession?: string | null;
 }
 
 export interface MovieFromStudio {

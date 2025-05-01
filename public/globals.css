@@ -9,13 +9,16 @@
 }
 body {
     background-color: var(--color-black);
+    color: var(--color-white);
+}
+html {
+    scrollbar-width: none;
 }
 * {
     padding: 0px;
     margin: 0px;
     border: none;
     font-family: "Roboto", sans-serif;
-
 }
 
 *,

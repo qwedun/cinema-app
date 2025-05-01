@@ -1,76 +1,51 @@
-import styles from './styles.module.scss'
-import { useEffect, useRef, useState } from "react";
-import { MovieCard } from "@/entities";
-import { ArrowIcon } from '@/shared'
-import { Movies } from '@/shared/api'
+import { ReactNode, useEffect, useRef, useState } from "react";
+import { MovieEntity } from '@/shared/api'
+import { Window } from "@/shared/ui/carousel/ui/window";
 
 interface ICarouselProps {
-    data: Movies
+    data?: MovieEntity[];
+    withButtons?: boolean;
+    children?: ReactNode;
 }
 
-export const Carousel = ({data}: ICarouselProps) => {
-
-    const [index, setIndex] = useState(0);
+export const Carousel = ({data, withButtons, children}: ICarouselProps) => {
 
     const [cardWidth, setCardWidth] = useState(0);
     const [windowWidth, setWindowWidth] = useState(0);
     const [containerWidth, setContainerWidth] = useState(0);
+    const [rowLength, setRowLength] = useState(0);
 
-    const cardRef = useRef(null);
-    const windowRef = useRef(null);
-    const containerRef = useRef(null);
-
-    const moveRight = () => {
-        if (Math.abs(index) * cardWidth + containerWidth >= windowWidth) return;
-        setIndex(prev => prev - 1)
-    }
-
-    const moveLeft = () => {
-        if (index === 0) return;
-        setIndex(prev => prev + 1)
-    }
+    const windowRef = useRef<HTMLDivElement>(null);
+    const containerRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        if (!cardRef.current || !windowRef.current || !containerRef.current) return;
+        if (!windowRef.current || !containerRef.current) return;
 
-        const cardWidth = cardRef.current.getBoundingClientRect().width;
-        const windowWidth = windowRef.current.getBoundingClientRect().width;
-        const containerWidth = containerRef.current.getBoundingClientRect().width;
+        const windowWidth = windowRef.current.offsetWidth;
+        const containerWidth = containerRef.current.offsetWidth;
 
-        setCardWidth(cardWidth + 10);
         setWindowWidth(windowWidth);
         setContainerWidth(containerWidth);
+
+        const cardWidth = windowRef.current.children[0].clientWidth;
+        setRowLength(windowRef.current.children.length)
+        setCardWidth(cardWidth);
+
     }, [data]);
 
     return (
-        <>
-            <div ref={containerRef} className={styles.container}>
-                <button
-                    onClick={moveLeft}
-                    className={`${styles.button} ${styles.left}`}>
-                    <ArrowIcon height='24' width='24' fill='white'/>
-                </button>
-                <button
-                    onClick={moveRight}
-                    className={`${styles.button} ${styles.right}`}>
-                    <ArrowIcon className={styles.rightArrow} height='24' width='24' fill='white'/>
-                </button>
-                <div ref={windowRef} className={styles.window}
-                     style={{'transform': `translateX(${index * cardWidth}px)`,}}>
-                    {data.docs.map(film => {
-                        return (
-                            <MovieCard
-                                cardRef={cardRef}
-                                name={film.name}
-                                imgUrl={film.poster.previewUrl}
-                                year={film.year}
-                                rating={film.rating.kp}
-                                length={film.movieLength}
-                            />
-                        )
-                    })}
-                </div>
-            </div>
-        </>
+        <Window
+            withButtons={withButtons}
+            cardWidth={cardWidth}
+            windowWidth={windowWidth}
+            containerWidth={containerWidth}
+            rowLength={rowLength}
+            windowRef={windowRef}
+            containerRef={containerRef}
+            data={data}
+        >
+            {children}
+        </Window>
+
     )
 }

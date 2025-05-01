@@ -1,17 +1,19 @@
 .header {
+  z-index: 999999;
   position: sticky;
   display: flex;
   justify-content: space-between;
-  height: 75px;
-  background-color: var(--color-gray-100);
+  align-items: center;
+  height: 70px;
   top: 0;
   transition-property: top;
-  transition-duration: (0.3s);
-
+  transition-duration: (0.2s);
+  background-color: var(--color-black);
+  padding: 0 80px;
 }
 .fixed {
   transition-property: top;
-  transition-duration: (0.3s);
+  transition-duration: (0.2s);
 
   top: -75px;
 }

@@ -37,7 +37,8 @@ export default (env: Env) => {
         output: {
             filename: "[name].[contenthash].js",
             path: path.resolve(__dirname, 'build'),
-            clean: true
+            clean: true,
+            publicPath: '/'
         },
         plugins: plugins,
         module: {
