@@ -1,11 +1,8 @@
 import styles from './styles.module.scss';
-import { MovieCard } from "@/entities";
-import { MovieEntity } from "@/shared/api";
 import { MouseEvent, ReactNode, RefObject, useState } from "react";
 import { RouteButton } from "@/shared/ui/carousel/ui/route-button";
 
 interface IWindowProps {
-    data?: MovieEntity[];
     children?: ReactNode;
     withButtons?: boolean;
 
@@ -23,7 +20,7 @@ export const Window = (Props: IWindowProps) => {
     const {
         windowRef, containerRef, rowLength,
         windowWidth, cardWidth, containerWidth,
-        data, withButtons, children
+         withButtons, children
     } = Props
 
     const [isDragging, setIsDragging] = useState(false);
@@ -101,20 +98,7 @@ export const Window = (Props: IWindowProps) => {
                     'pointerEvents': !canUseLink ? 'none' : 'auto',
                 }}
             >
-                { children
-                    ? children
-                    : data.map(film => {
-                    return (
-                        <MovieCard
-                            name={film.name}
-                            length={film.movieLength}
-                            year={film.year}
-                            rating={film.rating.kp}
-                            id={film.id}
-                            imgUrl={film.poster.previewUrl}
-                        />
-                    )
-                })}
+                { children }
             </div>
         </div>
     )

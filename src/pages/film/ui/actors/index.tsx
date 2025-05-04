@@ -10,7 +10,7 @@ export const Actors = ({data}: IActorsProps) => {
 
     return (
         <div className={styles.container}>
-            <h3 className={styles.head}>Над картиной работали</h3>
+            <h3>Над картиной работали</h3>
             <Carousel>
                 {data.map(person => (
                     <Avatar

@@ -1,9 +1,5 @@
+import { Catalog } from "@/widgets";
 
-
-export const Films = () => {
-    return (
-        <div>
-            Films
-        </div>
-    )
-}
+export const Films = () => (
+    <Catalog title='Фильмы' type='movie'/>
+)

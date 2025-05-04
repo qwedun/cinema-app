@@ -1,0 +1,21 @@
+.container {
+  padding: 0 80px;
+  margin-top: 40px;
+}
+.flex {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper {
+  display: flex;
+  gap: 8px;
+}
+.movies {
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-gap: 20px;
+}

@@ -1,38 +1,35 @@
 import styles from './styles.module.scss';
+import { MovieEntity } from "@/shared/api";
 import { Link } from 'react-router-dom';
-import { RefObject } from "react";
 
 interface IMovieCardPropsInterface {
-    cardRef?: RefObject<HTMLDivElement>;
-    imgUrl: string;
-    name: string;
-    year: number;
-    length: number | undefined;
-    rating: number;
-    id: number;
+    movie: MovieEntity;
+    fillContainer: boolean;
 }
 
-export const MovieCard = (Props: IMovieCardPropsInterface) => {
+export const MovieCard = ({movie, fillContainer}: IMovieCardPropsInterface) => {
 
     const {
-        cardRef, imgUrl, name,
-        year, length, rating, id
-    } = Props;
+        poster, name,
+        year, movieLength, rating, id
+    } = movie;
 
-    let time;
+    let time = '';
 
-    if (length) time = Math.floor(length / 60)
-        ? `${Math.floor(length/ 60)} ч ${length % 60} мин`
-       : `${length} мин`
+    if (movieLength) time = Math.floor(movieLength / 60)
+        ? `${Math.floor(movieLength/ 60)} ч ${movieLength % 60} мин`
+       : `${movieLength} мин`
+
+    const style = fillContainer ? styles.fill : styles.normal
 
     return (
-        <Link className={styles.container} to={`films/${id}`}>
+        <Link className={`${styles.container} ${style}`} to={`/films/${id}`}>
             <div className={styles.imageWrapper}>
-                <img width='100%' height='100%' src={imgUrl}/>
+                <img className={styles.img} width='100%' height='100%' src={poster?.url}/>
             </div>
             <div className={styles.information}>
                 <span className={styles.rating}>
-                    {rating.toFixed(1)}
+                    {rating.kp.toFixed(1)}
                 </span>
                 <div>
                     <h3>

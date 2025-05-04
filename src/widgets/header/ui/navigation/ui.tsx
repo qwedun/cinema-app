@@ -1,5 +1,4 @@
 import { RouteLink } from "@/shared";
-import { Link } from 'react-router-dom';
 import { LogoIcon } from '@/shared';
 import styles from './styles.module.scss';
 
@@ -12,7 +11,7 @@ export const Navigation = () => {
             <RouteLink to='/'>
                 Главная
             </RouteLink>
-            <RouteLink to='/film'>
+            <RouteLink to='/films'>
                 Фильмы
             </RouteLink>
             <RouteLink to='/series'>

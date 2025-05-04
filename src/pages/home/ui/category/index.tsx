@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom';
 import { Carousel, GENRES, ArrowIcon } from "@/shared";
+import { MovieCard } from "@/entities";
 import { MovieEntity } from "@/shared/api";
-import styles from './styles.module.scss';
 import { useEffect, useState } from "react";
 import { Queries } from "@/pages/home/api";
+import styles from './styles.module.scss';
 
 interface ICategoryProps {
     genre: 'comedy' | 'science' | 'newFilms' | 'family' | 'drama';
@@ -26,7 +27,11 @@ export const Category = ({genre} : ICategoryProps) => {
                 {genreName}
                 <ArrowIcon width={20} height={20} fill='white'/>
             </Link>
-            {movies.length && <Carousel data={movies} withButtons/>}
+            {movies.length && <Carousel withButtons>
+                {movies.map(movie => (
+                    <MovieCard key={movie.id} movie={movie} fillContainer={false}/>
+                ))}
+            </Carousel>}
         </>
     )
 }

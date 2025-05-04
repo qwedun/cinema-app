@@ -1,19 +1,19 @@
+import { Link } from "react-router-dom";
+import { MovieEntity } from "@/shared/api";
 import styles from './styles.module.scss'
-import {MovieEntity} from "@/shared/api";
-
 interface IBigMovieCard {
     data: MovieEntity;
 }
 
-export const    BigMovieCard = ({data} : IBigMovieCard) => {
+export const BigMovieCard = ({data} : IBigMovieCard) => {
 
     const imgUrl = data.backdrop.url;
-    const { name, year } = data;
+    const { name, year, id } = data;
     const rating = data.rating.kp;
     const genre = data.genres[0].name;
 
     return (
-        <div className={styles.wrapper}>
+        <Link to={`/films/${id}`} className={styles.wrapper}>
             <img className={styles.img} src={imgUrl}/>
             <div className={styles.info}>
                 <div className={styles.title}>
@@ -25,6 +25,6 @@ export const    BigMovieCard = ({data} : IBigMovieCard) => {
                     <span>{genre}</span>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }

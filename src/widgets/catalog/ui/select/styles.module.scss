@@ -1,0 +1,42 @@
+.select {
+  position: relative;
+  font-size: 18px;
+  background-color: var(--color-gray-100);
+  z-index: 20;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.info {
+  display: flex;
+  align-items: center;
+}
+.arrow {
+  transform: rotate(-90deg);
+  margin-left: 16px;
+}
+.menu {
+  position: absolute;
+  width: 270px;
+  top: 45px;
+  background-color: var(--color-gray-100);
+  border-radius: 6px;
+  max-height: 385px;
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+.highlighted {
+  background-color: var(--color-gray-200);
+}
+.right {
+  right: 0;
+}
+.left {
+  left: 0;
+}
+.item {
+  padding: 15px;
+  &:hover {
+    background-color: var(--color-gray-200);
+  }
+}

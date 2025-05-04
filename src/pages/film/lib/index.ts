@@ -8,9 +8,11 @@ export const useMovie = () => {
     const [movie, setMovie] = useState<MovieEntity>({} as MovieEntity);
     const {id } = useParams();
 
+
     useEffect(() => {
         Queries.filmByIdQuery(id).then(data => setMovie(data))
-    }, []);
+        window.scrollTo({left: 0, top:0, behavior:'smooth'})
+    }, [id]);
 
     return movie
 }

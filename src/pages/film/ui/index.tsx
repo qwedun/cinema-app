@@ -14,9 +14,9 @@ export const Film = () => {
         <>
             <Preview data={movie}/>
             <Description data={movie.description}/>
-            {movie.similarMovies.length ? <Similar data={movie.similarMovies}/> : null}
+            {movie.similarMovies?.length ? <Similar data={movie.similarMovies}/> : null}
             <Actors data={movie.persons}/>
-            {movie.facts.length ? <Facts data={movie.facts}/> : null}
+            {movie.facts?.length ? <Facts data={movie.facts}/> : null}
         </>
     )
     return <div>LOADING</div>

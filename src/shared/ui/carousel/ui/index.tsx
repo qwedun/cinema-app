@@ -1,14 +1,12 @@
 import { ReactNode, useEffect, useRef, useState } from "react";
-import { MovieEntity } from '@/shared/api'
 import { Window } from "@/shared/ui/carousel/ui/window";
 
 interface ICarouselProps {
-    data?: MovieEntity[];
     withButtons?: boolean;
     children?: ReactNode;
 }
 
-export const Carousel = ({data, withButtons, children}: ICarouselProps) => {
+export const Carousel = ({withButtons, children}: ICarouselProps) => {
 
     const [cardWidth, setCardWidth] = useState(0);
     const [windowWidth, setWindowWidth] = useState(0);
@@ -31,7 +29,7 @@ export const Carousel = ({data, withButtons, children}: ICarouselProps) => {
         setRowLength(windowRef.current.children.length)
         setCardWidth(cardWidth);
 
-    }, [data]);
+    }, []);
 
     return (
         <Window
@@ -42,7 +40,6 @@ export const Carousel = ({data, withButtons, children}: ICarouselProps) => {
             rowLength={rowLength}
             windowRef={windowRef}
             containerRef={containerRef}
-            data={data}
         >
             {children}
         </Window>

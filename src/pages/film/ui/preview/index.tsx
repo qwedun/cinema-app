@@ -17,11 +17,18 @@ export const Preview = ({data}: IPreviewProps) => {
         countries,
         genres,
         persons,
-        shortDescription
+        shortDescription,
+        movieLength
     } = data
 
     const director = persons.find(el => el.enProfession === 'director');
     const actors = persons.filter(el => el.enProfession === 'actor').slice(0, 3);
+
+    let time = '';
+
+    if (movieLength) time = Math.floor(movieLength / 60)
+        ? `${Math.floor(movieLength/ 60)} ч ${movieLength % 60} мин`
+        : `${movieLength} мин`
 
     return (
         <>
@@ -37,7 +44,7 @@ export const Preview = ({data}: IPreviewProps) => {
                         <span>{genres[0].name}</span>
                         <span>{ageRating}+</span>
                         <span>{countries[0].name}</span>
-                        <span>3 ч 10 мин</span>
+                        <span>{time}</span>
                     </p>
                     <p className={styles.paragraph}>
                         {shortDescription}
