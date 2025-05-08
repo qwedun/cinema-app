@@ -1,5 +1,5 @@
-import styles from './styles.module.scss';
 import { useState } from "react";
+import styles from './styles.module.scss';
 
 interface IDescription {
     data: string;

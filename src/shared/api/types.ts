@@ -123,20 +123,22 @@ export interface ItemName {
 }
 
 export interface PersonInMovie {
-    /**
-     * Id персоны с кинопоиска
-     * @example 6317
-     */
     id?: number | null;
-    /** @example "https://st.kp.yandex.net/images/actor_iphone/iphone360_6317.jpg" */
     photo?: string | null;
-    /** @example "Пол Уокер" */
     name?: string | null;
-    /** @example "Paul Walker" */
     enName?: string | null;
     description: string;
-    profession: string;
+    profession: Profession[];
     enProfession: string;
+    birthday: string;
+    facts: FactInMovie[];
+}
+
+export interface MovieFromPerson {
+    id: number;
+    name: string;
+    alternativeName: string;
+    rating: number;
 }
 
 export interface ReviewInfo {
@@ -414,6 +416,13 @@ export interface MovieEntity {
     persons: Person[];
     facts: FactInMovie[];
     similarMovies: SimilarMovie[];
+    videos: Videos;
+}
+interface Videos {
+    trailers: Trailer[];
+}
+interface Trailer {
+    url: string;
 }
 export interface SimilarMovie {
     id: number;

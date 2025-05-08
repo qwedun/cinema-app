@@ -31,7 +31,7 @@ export const Pagination = ({totalPages} : IPaginationProps) => {
             })}
 
             <div className={styles.page} onClick={() => {
-                if (currentPage + 1 < totalPages) setCurrentPage(currentPage + 1)
+                if (currentPage + 1 <= totalPages) setCurrentPage(currentPage + 1)
             }}>
                 <ArrowIcon className={styles.arrow} width={18} height={18} fill='white'/>
             </div>

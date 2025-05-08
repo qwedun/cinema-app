@@ -1,0 +1,38 @@
+.input {
+  border-radius: 10px;
+  padding: 10px 30px;
+  margin: 0 auto;
+  width: 100%;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  font-weight: bold;
+  font-size: 14px;
+}
+.labelEnd {
+  transition: transform 200ms, font-size 200ms;
+  font-size: 10px;
+  transform: translate(10px)
+}
+.labelStart {
+  transition: transform 200ms, font-size 200ms;
+  font-size: 16px;
+  transform: translate(10px, 8px);
+}
+.label {
+  position: absolute;
+  top: 20px;
+  left: 0;
+  padding: 0 20px;
+  pointer-events: none;
+  color: rgba(0,0,0,.45);
+}
+.search {
+  position: relative;
+  top: 30px;
+  left: 5px;
+}
+.search {
+  position: relative;
+  top:30px;
+  left: 10px;
+}

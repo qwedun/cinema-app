@@ -29,9 +29,9 @@ const defaultConfig: Config = {
 export const Queries = {
     async getMoviesByUrl(params: Record<string, string>, type: string) {
 
-        const { genre, sort, page } = params;
-        const years = params.year || '1900-2025';
-        const rating = params.rating || '5-9';
+        const { genreQueryName, sortQueryName, page } = params;
+        const years = params.yearQueryName || '1900-2025';
+        const rating = params.ratingQueryName || '5-9';
 
         let config = {
             ...defaultConfig,
@@ -41,14 +41,14 @@ export const Queries = {
             page: page
         }
 
-        if (genre) config = {
+        if (genreQueryName) config = {
             ...config,
-            'genres.name': genre
+            'genres.name': genreQueryName
         }
 
-        if (sort) config = {
+        if (sortQueryName) config = {
             ...config,
-            sortField: sort,
+            sortField: sortQueryName,
         }
 
         if (type !== 'tv-series') config = {
@@ -59,9 +59,6 @@ export const Queries = {
 
         const raw: AxiosResponse<Movies> = await client.get('/movie', {
             params: config,
-            paramsSerializer: {
-                indexes: null
-            }
         })
 
         return raw.data

@@ -14,16 +14,16 @@ interface ICategoryProps {
 export const Category = ({genre} : ICategoryProps) => {
 
     const genreName = GENRES[genre].name;
+    const queryName = GENRES[genre].queryName;
     const [movies, setMovies] = useState<MovieEntity[]>([]);
 
     useEffect(() => {
-        const queryName = GENRES[genre].queryName;
         Queries.movieByGenreQuery(queryName).then(data => setMovies(data))
     }, []);
 
     return (
         <>
-            <Link className={styles.head} to=''>
+            <Link className={styles.head} to={`/films?year=2025&genre=${queryName}`}>
                 {genreName}
                 <ArrowIcon width={20} height={20} fill='white'/>
             </Link>

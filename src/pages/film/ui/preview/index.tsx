@@ -18,7 +18,8 @@ export const Preview = ({data}: IPreviewProps) => {
         genres,
         persons,
         shortDescription,
-        movieLength
+        movieLength,
+        videos
     } = data
 
     const director = persons.find(el => el.enProfession === 'director');
@@ -35,7 +36,6 @@ export const Preview = ({data}: IPreviewProps) => {
             <div style={{
                  backgroundImage: `url(${backdrop.url})`}}
                  className={styles.container}>
-
                 <div className={styles.flex}>
                     <h2>{name}</h2>
                     <p className={styles.info}>
@@ -62,12 +62,12 @@ export const Preview = ({data}: IPreviewProps) => {
                     ))}
                     </p>
                     <div className={styles.menu}>
-                        <button className={`${styles.button} ${styles.first}`}>
+                        <Link to='watch' className={`${styles.button} ${styles.first}`}>
                             Смотреть
-                        </button>
-                        <button className={styles.button}>
+                        </Link>
+                        <Link target='_blank' to={videos?.trailers[0]?.url} className={styles.button}>
                             Трейлер
-                        </button>
+                        </Link>
                         <div className={styles.imgContainer}>
                             <BookmarkIcon width={24} height={24} className={styles.img}/>
                         </div>

@@ -41,6 +41,7 @@ export const Window = (Props: IWindowProps) => {
         else if (windowWidth + translateX < containerWidth) {
             if (cardWidth * rowLength <= containerWidth) setTranslateX(0)
             else setTranslateX(containerWidth - windowWidth)
+
         }
     };
 

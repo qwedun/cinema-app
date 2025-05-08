@@ -6,6 +6,9 @@ const axiosConfig: CreateAxiosDefaults = {
         'X-API-KEY': process.env.API_KEY,
         'Content-Type': 'application/json'
     },
+    paramsSerializer: {
+        indexes: null,
+    }
 };
 
 export const client = axios.create(axiosConfig);

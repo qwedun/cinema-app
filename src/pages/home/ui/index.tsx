@@ -13,6 +13,5 @@ export const Home = () => {
             <Category genre='science'/>
             <Category genre='drama'/>
         </>
-
     )
 }

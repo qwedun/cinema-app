@@ -1,19 +1,14 @@
-import { Select } from "@/shared";
+import { Select } from "@/widgets/catalog/ui/select";
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Movies } from "@/shared/api";
 import { MovieCard } from "@/entities";
 import { Queries } from "@/widgets/catalog/api";
-import { getArrays, getParamsFromUrl } from "@/widgets/catalog/lib";
+import { getArrays, getParamsFromUrl, useParams } from "@/widgets/catalog/lib";
+import { Pagination } from "@/shared";
 import styles from './styles.module.scss';
-import { Pagination } from "@/shared/ui/pagination/ui";
 
 type SelectTypes = 'rating' | 'genres' | 'years' | 'sort' | ''
-
-type Genre = {
-    name: string;
-    queryName: string;
-}
 
 interface ICatalogProps {
     type: 'movie' | 'tv-series' | 'cartoon';
@@ -30,18 +25,14 @@ export const Catalog = ({type, title}: ICatalogProps) => {
 
     const [activeType, setActiveType] = useState<SelectTypes>('');
     const [searchParams, setSearchParams] = useSearchParams();
-
     const [movies, setMovies] = useState<Movies>({} as Movies);
 
     const {
-        genreQueryName, ratingQueryName, sortQueryName, yearQueryName,
-        genreName, ratingName, sortName, yearName
-    } = getParamsFromUrl(searchParams);
-
-    const [genre, setGenre] = useState<Genre>({name:genreName || 'Жанры', queryName: genreQueryName});
-    const [rating, setRating] = useState<Genre>({name:ratingName || 'Рейтинг', queryName: ratingQueryName});
-    const [years, setYears] = useState<Genre>({name:yearName || 'Годы выхода', queryName: yearQueryName});
-    const [sort, setSort] = useState<Genre>({name:sortName || 'Рекомендуемые', queryName: sortQueryName});
+        genre, setGenre,
+        rating, setRating,
+        sort, setSort,
+        years, setYears
+    } = useParams(searchParams)
 
     useEffect(() => {
 
@@ -111,7 +102,11 @@ export const Catalog = ({type, title}: ICatalogProps) => {
                     <MovieCard key={movie.id} movie={movie} fillContainer/>
                 ))}
             </div>
-            <Pagination totalPages={movies.total}/>
+            {
+                movies.pages > 1 ? (
+                    <Pagination totalPages={movies.pages}/>
+                ) : null
+            }
         </div>
     )
 }

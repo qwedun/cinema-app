@@ -1,0 +1,8 @@
+.movies {
+  margin-top: 30px;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 20px;
+}

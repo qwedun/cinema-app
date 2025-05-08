@@ -1,0 +1,28 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  overflow: scroll;
+  scrollbar-width: none;
+  z-index: 999;
+  background-color: rgba(0,0,0,.95);
+  min-height: 100vh;
+  min-width: 100vw;
+}
+.container {
+  max-width: 1920px;
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  opacity: 0.6;
+  cursor: pointer;
+}
+.children {
+  display: inline-block;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}

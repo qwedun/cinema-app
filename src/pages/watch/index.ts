@@ -1,0 +1,1 @@
+export { Watch } from "@/pages/watch/ui";

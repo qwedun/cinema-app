@@ -14,7 +14,8 @@ import RocketIcon from './genres/rocket.svg';
 import TankIcon from './genres/tank.svg';
 import HeartIcon from './genres/hearts.svg';
 import MusicIcon from './genres/music.svg';
-import SortIcon from './common/sort.svg'
+import SortIcon from './common/sort.svg';
+import CloseIcon from './common/close.svg';
 
 
 export {
@@ -34,5 +35,6 @@ export {
     StarIcon,
     ShareIcon,
     BookmarkIcon,
-    SortIcon
+    SortIcon,
+    CloseIcon
 }

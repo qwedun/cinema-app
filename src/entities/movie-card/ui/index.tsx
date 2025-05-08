@@ -1,5 +1,5 @@
 import styles from './styles.module.scss';
-import { MovieEntity } from "@/shared/api";
+import { MovieEntity, MovieFromPerson } from "@/shared/api";
 import { Link } from 'react-router-dom';
 
 interface IMovieCardPropsInterface {
@@ -29,7 +29,7 @@ export const MovieCard = ({movie, fillContainer}: IMovieCardPropsInterface) => {
             </div>
             <div className={styles.information}>
                 <span className={styles.rating}>
-                    {rating.kp.toFixed(1)}
+                    {rating?.kp?.toFixed(1) || ''}
                 </span>
                 <div>
                     <h3>

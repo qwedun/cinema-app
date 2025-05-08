@@ -1,4 +1,5 @@
 import { GENRES, RATING, SORT, YEARS } from "@/shared";
+import { useState } from "react";
 
 
 export const getArrays = () => {
@@ -54,5 +55,24 @@ export const getParamsFromUrl = (searchParams: URLSearchParams) => {
         sortName,
 
         page
+    }
+}
+export const useParams = (searchParams : URLSearchParams) => {
+
+    const {
+        genreQueryName, ratingQueryName, sortQueryName, yearQueryName,
+        genreName, ratingName, sortName, yearName
+    } = getParamsFromUrl(searchParams);
+
+    const [genre, setGenre] = useState({name:genreName || 'Все жанры', queryName: genreQueryName});
+    const [rating, setRating] = useState({name:ratingName || 'Любой рейтинг', queryName: ratingQueryName});
+    const [years, setYears] = useState({name:yearName || 'Все годы', queryName: yearQueryName});
+    const [sort, setSort] = useState({name:sortName || 'Рекомендуемые', queryName: sortQueryName});
+
+    return {
+        genre, setGenre,
+        rating, setRating,
+        years, setYears,
+        sort, setSort
     }
 }

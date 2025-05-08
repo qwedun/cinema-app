@@ -6,7 +6,7 @@ import { MovieEntity } from "@/shared/api";
 export const useMovie = () => {
 
     const [movie, setMovie] = useState<MovieEntity>({} as MovieEntity);
-    const {id } = useParams();
+    const { id } = useParams();
 
 
     useEffect(() => {

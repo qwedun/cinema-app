@@ -4,3 +4,5 @@ export { Layout } from './layout';
 export { Series } from './series';
 export { Films } from './films';
 export { Film } from './film';
+export { Watch } from 'src/pages/watch';
+export { Name } from '@/pages/name';

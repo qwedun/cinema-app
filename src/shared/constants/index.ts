@@ -1,11 +1,15 @@
 export const GENRES = {
     all: {
-        name: 'Все',
+        name: 'Все жанры',
         queryName: ''
     },
     comedy: {
         name: 'Комедии',
         queryName: 'комедия'
+    },
+    horror: {
+        name: 'Ужасы',
+        queryName: 'ужасы'
     },
     family: {
         name: 'Семейные',
@@ -93,13 +97,18 @@ export const GENRES = {
     },
     fantasy: {
         name: 'Фэнтези',
-        queryName: 'аниме'
+        queryName: 'фэнтези'
     },
+    adventure: {
+        name: 'Приключения',
+        queryName: 'приключения'
+    }
 }
 
 export const YEARS = {
     'Все годы': '',
-    '2024-2025': '2025-2025',
+    '2025 ': '2025',
+    '2024-2025': '2024-2025',
     '2022-2023': '2022-2023',
     '2020-2021': '2020-2021',
     '2014-2019': '2014-2019',
