@@ -1,28 +1,50 @@
-import { useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
 import { Preview } from "@/pages/name/ui/preview";
 import { Facts } from "@/pages/name/ui/facts";
-import { Movies } from "@/pages/name/ui/movies";
-import { MovieEntity, PersonInMovie } from "@/shared/api";
-import { Queries } from "@/pages/name/api";
+import { MovieList } from "@/pages/name/ui/movies";
+import { useApi } from "@/pages/name/api";
+import { Button, Spinner } from "@/shared";
 import styles from './styles.module.scss';
 
 export const Name = () => {
 
-    const { id } = useParams();
-    const [actor, setActor] = useState<PersonInMovie>();
-    const [movies, setMovies] = useState<MovieEntity[]>()
+    const {
+        person,
+        isPersonPending,
+        movies,
+        isFetchingNextPage,
+        hasNextPage,
+        fetchNextPage
+    } = useApi()
 
-    useEffect(() => {
-        Queries.getPersonInfo(id).then(data => setActor(data));
-        Queries.getMoviesByPerson(id).then(data => setMovies(data));
-    }, []);
+    if (isPersonPending) return (
+        <Spinner filled/>
+    )
 
     return (
         <div className={styles.container}>
-            {actor && <Preview person={actor}/>}
-            {movies?.length && <Movies data={movies}/>}
-            {actor?.facts?.length && <Facts data={actor.facts}/>}
+            <Preview person={person}/>
+            {
+                !movies ? (
+                    <Spinner/>
+                ) : <MovieList data={movies}/>
+            }
+            {
+                isFetchingNextPage ? (
+                    <Spinner/>
+                ) : null
+            }
+            {
+                hasNextPage ? (
+                    <Button onClick={() => fetchNextPage()}>
+                        Показать еще
+                    </Button>
+                ) : null
+            }
+            {
+                person?.facts?.length ? (
+                    <Facts data={person.facts}/>
+                ) : null
+            }
         </div>
     )
 }

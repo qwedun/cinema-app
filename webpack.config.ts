@@ -1,5 +1,6 @@
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
 import webpack, {Configuration} from 'webpack';
@@ -20,13 +21,14 @@ export default (env: Env) => {
     const plugins: Configuration['plugins'] = [
         new HtmlWebpackPlugin({
             template: path.resolve(__dirname, 'public', 'index.html')
-        })
+        }),
+        new MiniCssExtractPlugin(),
+        new Dotenv(),
     ];
 
     if (isDev) {
         plugins.push(new ForkTsCheckerWebpackPlugin());
         plugins.push(new ReactRefreshPlugin());
-        plugins.push(new Dotenv())
     } else {
         plugins.push(new BundleAnalyzerPlugin());
     }
@@ -38,7 +40,7 @@ export default (env: Env) => {
             filename: "[name].[contenthash].js",
             path: path.resolve(__dirname, 'build'),
             clean: true,
-            publicPath: '/'
+            publicPath: '/',
         },
         plugins: plugins,
         module: {
@@ -61,7 +63,7 @@ export default (env: Env) => {
                 {
                     test: /\.s[ac]ss$/i,
                     use: [
-                        "style-loader",
+                        MiniCssExtractPlugin.loader,
                         {
                             loader: 'css-loader',
                             options: {

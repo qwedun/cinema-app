@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import { WithProviders } from "@/app/providers";
 import { Router } from "@/app/router";
+import '/public/globals.scss';
 
 import React from 'react';
 

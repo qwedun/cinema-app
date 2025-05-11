@@ -8,7 +8,7 @@ interface IMoviesProps {
 }
 
 
-export const Movies = ({data} : IMoviesProps) => {
+export const MovieList = ({data} : IMoviesProps) => {
     return (
         <>
             <h2>Фильмография</h2>

@@ -4,13 +4,18 @@ import { Similar } from "../ui/similar";
 import { Actors } from "../ui/actors";
 import { Facts } from "@/pages/film/ui/facts";
 import { useMovie } from "@/pages/film/lib";
+import { Spinner } from "@/shared";
 
 
 export const Film = () => {
 
-    const movie = useMovie();
+    const {movie, isPending, error} = useMovie();
 
-    if (movie.name) return (
+    if (isPending) return (
+        <Spinner filled/>
+    )
+
+    else if (movie) return (
         <>
             <Preview data={movie}/>
             <Description data={movie.description}/>
@@ -19,5 +24,4 @@ export const Film = () => {
             {movie.facts?.length ? <Facts data={movie.facts}/> : null}
         </>
     )
-    return <div>LOADING</div>
 }

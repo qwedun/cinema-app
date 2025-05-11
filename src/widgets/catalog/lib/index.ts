@@ -1,5 +1,8 @@
 import { GENRES, RATING, SORT, YEARS } from "@/shared";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useSearchParams, useLocation } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { Queries } from "@/widgets/catalog/api";
 
 
 export const getArrays = () => {
@@ -57,7 +60,9 @@ export const getParamsFromUrl = (searchParams: URLSearchParams) => {
         page
     }
 }
-export const useParams = (searchParams : URLSearchParams) => {
+export const useParams = () => {
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const {
         genreQueryName, ratingQueryName, sortQueryName, yearQueryName,
@@ -69,10 +74,38 @@ export const useParams = (searchParams : URLSearchParams) => {
     const [years, setYears] = useState({name:yearName || 'Все годы', queryName: yearQueryName});
     const [sort, setSort] = useState({name:sortName || 'Рекомендуемые', queryName: sortQueryName});
 
+
+    useEffect(() => {
+
+        const params = {
+            genre: genre.queryName || '',
+            sort: sort.queryName || '',
+            year: years.queryName || '',
+            rating:rating.queryName || '',
+        }
+
+        setSearchParams(params);
+
+    },  [sort, rating, genre, years]);
+
     return {
         genre, setGenre,
         rating, setRating,
         years, setYears,
-        sort, setSort
+        sort, setSort,
+        searchParams
     }
+}
+
+export const useApi = (type: string, searchParams: URLSearchParams) => {
+
+    const {data, isPending, error} = useQuery({
+        queryKey: [type, searchParams.toString()],
+        queryFn: () => {
+            const params = getParamsFromUrl(searchParams);
+            return Queries.getMoviesByUrl(params, type);
+        }
+    })
+
+    return { data, isPending, error }
 }

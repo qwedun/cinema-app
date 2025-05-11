@@ -13,11 +13,7 @@ export const Actors = ({data}: IActorsProps) => {
             <h3>Над картиной работали</h3>
             <Carousel>
                 {data.map(person => (
-                    <Avatar
-                        src={person.photo}
-                        profession={person.profession}
-                        name={person.name}
-                    />
+                    <Avatar person = {person}/>
                 ))}
             </Carousel>
         </div>

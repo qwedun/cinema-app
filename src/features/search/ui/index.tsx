@@ -1,7 +1,7 @@
 import { Input } from "@/features/search/ui/input";
 import { useDebounce } from "@/features/search/lib";
 import { MovieList } from "@/features/search/ui/movie-list";
-import { LoadMore } from "@/features/search/ui/load-more";
+import { Button } from "@/shared";
 import { useEffect, useState } from "react";
 import { MovieEntity } from "@/shared/api";
 import { Queries } from "@/features/search/api";
@@ -37,9 +37,9 @@ export const Search = () => {
             <MovieList data={movies}/>
             { movies.length ?
                 (
-                    <LoadMore
-                        onClick={() => setPage(prev => prev + 1)}
-                    />
+                    <Button onClick={() => setPage(prev => prev + 1)}>
+                        Больше фильмов
+                    </Button>
                 ) : null
             }
         </div>

@@ -1,11 +1,8 @@
 import { Select } from "@/widgets/catalog/ui/select";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Movies } from "@/shared/api";
+import { useState } from "react";
 import { MovieCard } from "@/entities";
-import { Queries } from "@/widgets/catalog/api";
-import { getArrays, getParamsFromUrl, useParams } from "@/widgets/catalog/lib";
-import { Pagination } from "@/shared";
+import { getArrays, useParams, useApi } from "@/widgets/catalog/lib";
+import { Pagination, Spinner } from "@/shared";
 import styles from './styles.module.scss';
 
 type SelectTypes = 'rating' | 'genres' | 'years' | 'sort' | ''
@@ -24,33 +21,16 @@ const { sortArray,
 export const Catalog = ({type, title}: ICatalogProps) => {
 
     const [activeType, setActiveType] = useState<SelectTypes>('');
-    const [searchParams, setSearchParams] = useSearchParams();
-    const [movies, setMovies] = useState<Movies>({} as Movies);
 
     const {
         genre, setGenre,
         rating, setRating,
         sort, setSort,
-        years, setYears
-    } = useParams(searchParams)
+        years, setYears,
+        searchParams
+    } = useParams()
 
-    useEffect(() => {
-
-        const params = {
-            genre: genre.queryName || '',
-            sort: sort.queryName || '',
-            year: years.queryName || '',
-            rating:rating.queryName || '',
-        }
-
-        setSearchParams(params);
-
-    },  [sort, rating, genre, years]);
-
-    useEffect(() => {
-        const params = getParamsFromUrl(searchParams);
-        Queries.getMoviesByUrl(params, type).then(data => setMovies(data));
-    }, [searchParams]);
+    const { data, error, isPending } = useApi(type, searchParams);
 
     const setType = (currentType: SelectTypes) => {
         if (currentType === activeType) setActiveType('')
@@ -97,16 +77,19 @@ export const Catalog = ({type, title}: ICatalogProps) => {
                     {sort.name}
                 </Select>
             </div>
-            <div className={styles.movies}>
-                {movies?.docs?.length && movies.docs.map(movie => (
-                    <MovieCard key={movie.id} movie={movie} fillContainer/>
-                ))}
-            </div>
-            {
-                movies.pages > 1 ? (
-                    <Pagination totalPages={movies.pages}/>
+            {isPending && <Spinner filled/>}
+            { data && (
+                <div className={styles.movies}>
+                    {data.docs.map(movie => (
+                        <MovieCard key={movie.id} movie={movie} fillContainer/>
+                    ))}
+                </div>
+            )}
+            { data && (
+                data.pages > 1 ? (
+                    <Pagination totalPages={data.pages}/>
                 ) : null
-            }
+            )}
         </div>
     )
 }
