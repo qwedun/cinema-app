@@ -1,9 +1,9 @@
 import axios, { CreateAxiosDefaults } from 'axios';
 
 const axiosConfig: CreateAxiosDefaults = {
-    baseURL: process.env.API_URL,
+    baseURL: process.env.NEXT_PUBLIC_API_URL,
     headers: {
-        'X-API-KEY': process.env.API_KEY,
+        'X-API-KEY': process.env.NEXT_PUBLIC_API_KEY,
         'Content-Type': 'application/json'
     },
     paramsSerializer: {
