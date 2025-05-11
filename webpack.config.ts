@@ -29,8 +29,6 @@ export default (env: Env) => {
     if (isDev) {
         plugins.push(new ForkTsCheckerWebpackPlugin());
         plugins.push(new ReactRefreshPlugin());
-    } else {
-        plugins.push(new BundleAnalyzerPlugin());
     }
 
     const config: webpack.Configuration = {
