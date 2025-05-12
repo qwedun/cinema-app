@@ -1,7 +1,6 @@
-import styles from './styles.module.scss';
-import { StarIcon, ShareIcon, BookmarkIcon } from '@/shared';
-import { MovieEntity } from "@/shared/api";
+import { StarIcon, ShareIcon, BookmarkIcon, MovieEntity } from '@/shared';
 import { Link } from "react-router-dom";
+import styles from './styles.module.scss';
 
 interface IPreviewProps {
     data: MovieEntity;

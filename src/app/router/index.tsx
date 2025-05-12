@@ -1,5 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import { Layout, Films, Cartoons, Series, Home, Film, Watch, Name } from "@/pages";
+import { Layout,
+    Films,
+    Cartoons,
+    Series,
+    Home,
+    Film,
+    Watch,
+    Name,
+} from "@/pages";
 
 export const Router = () => {
     return (

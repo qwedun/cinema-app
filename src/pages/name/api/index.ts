@@ -1,7 +1,7 @@
-import { client, Movies, PersonInMovie } from "@/shared/api";
+import { client, Movies, PersonInMovie, ApiConfig } from "@/shared";
 import { AxiosResponse } from "axios";
 import { useParams } from "react-router-dom";
-import {useQuery, useInfiniteQuery, InfiniteData} from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery, InfiniteData } from "@tanstack/react-query";
 
 const Queries = {
     async getPersonInfo(id: string) {
@@ -9,16 +9,20 @@ const Queries = {
         return data.data;
     },
     async getMoviesByPerson(id: string, page: number) {
+
+        const config: ApiConfig = {
+            'persons.id': id,
+            limit: 20,
+            page: page,
+            sortField: ['votes.filmCritics'],
+            sortType: '-1',
+            notNullFields: ['poster.url', 'name']
+        }
+
         const data: AxiosResponse<Movies> = await client.get(`/movie`, {
-            params: {
-                'persons.id': id,
-                limit: 20,
-                page: page,
-                sortField: 'votes.filmCritics',
-                sortType: '-1',
-                notNullFields: ['poster.url', 'name']
-            }
+            params: config
         })
+
         return data.data
     }
 }

@@ -1,16 +1,15 @@
-import { Movies, client } from "@/shared/api";
+import { Movies, client, ApiConfig } from "@/shared";
 import { AxiosResponse } from "axios";
-import {GENRES} from "@/shared";
-import {useQuery} from "@tanstack/react-query";
+import { GENRES } from "@/shared";
+import { useQuery } from "@tanstack/react-query";
 
-type Config = Record<string, string | number | boolean>
 type Genres = 'comedy' | 'science' | 'newFilms' | 'family' | 'drama';
 
-const defaultConfig: Config = {
+const defaultConfig: ApiConfig = {
     'rating.kp': '5-9',
     movieLength: '1-999',
     year: 2025,
-    sortField: 'votes.filmCritics',
+    sortField: ['votes.filmCritics'],
     sortType: '-1',
     limit: 15,
 }

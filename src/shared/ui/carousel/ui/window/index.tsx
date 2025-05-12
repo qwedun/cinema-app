@@ -1,6 +1,6 @@
-import styles from './styles.module.scss';
 import { MouseEvent, ReactNode, RefObject, useState } from "react";
 import { RouteButton } from "@/shared/ui/carousel/ui/route-button";
+import styles from './styles.module.scss';
 
 interface IWindowProps {
     children?: ReactNode;

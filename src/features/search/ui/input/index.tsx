@@ -22,14 +22,13 @@ export const Input = ({setData, data} : IInputProps) => {
     }
 
     return (
-        <div className={styles.container}>
+        <div>
             <SearchIcon className={styles.search}/>
             {
                 data && (
                     <CloseIcon
                         onClick={() => setData('')}
                         width={12} height={12}
-                        className={styles.close}
                     />
                 )
             }

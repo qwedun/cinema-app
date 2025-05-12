@@ -30,7 +30,10 @@ export const Catalog = ({type, title}: ICatalogProps) => {
         searchParams
     } = useParams()
 
-    const { data, error, isPending } = useApi(type, searchParams);
+    const { data,
+        error,
+        isPending
+    } = useApi(type, searchParams);
 
     const setType = (currentType: SelectTypes) => {
         if (currentType === activeType) setActiveType('')

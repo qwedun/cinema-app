@@ -1,9 +1,10 @@
-import {client, Movies} from "@/shared/api";
-import {AxiosResponse} from "axios";
+import { client, Movies, ApiConfig } from "@/shared";
+import { AxiosResponse } from "axios";
+import { InfiniteData, useInfiniteQuery } from "@tanstack/react-query";
 
-const config = {
+const config: ApiConfig = {
     notNullFields: ['poster.url', 'shortDescription', 'name', 'year', 'rating.kp'],
-    limit: 30,
+    limit: 16,
 }
 
 export const Queries = {
@@ -16,5 +17,37 @@ export const Queries = {
             },
         });
         return raw.data;
+    }
+}
+
+export const useSearchQuery = (request: string) => {
+
+    const {
+        data,
+        hasNextPage,
+        fetchNextPage
+    } = useInfiniteQuery<
+    Movies,
+    Error,
+    InfiniteData<Movies>,
+    ['search-movie', string],
+    number
+    >({
+        queryKey: ['search-movie', request],
+        queryFn: ({pageParam = 1}) => Queries.getMoviesByRequest(request, pageParam),
+        getNextPageParam: (lastPage, allPages) => {
+            const maxPages = lastPage.pages;
+            const nextPage = allPages.length + 1;
+            return nextPage <= maxPages ? nextPage : undefined;
+        },
+        initialPageParam: 1,
+    })
+
+    const movies = data?.pages?.flatMap(page => page.docs) || [];
+
+    return {
+        movies,
+        hasNextPage,
+        fetchNextPage
     }
 }

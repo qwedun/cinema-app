@@ -1,7 +1,6 @@
 import { Navigation } from "@/widgets/header/ui/navigation";
 import { useHeader } from "@/widgets/header/lib/use-header";
-import { SearchIcon } from '@/shared'
-import { Modal } from "@/shared";
+import { SearchIcon, Modal } from '@/shared'
 import { useState } from "react";
 import { Search } from "@/features";
 import styles from './styles.module.scss';

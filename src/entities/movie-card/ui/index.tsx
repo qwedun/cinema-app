@@ -1,6 +1,6 @@
-import styles from './styles.module.scss';
-import { MovieEntity, MovieFromPerson } from "@/shared/api";
+import { MovieEntity } from "@/shared/api";
 import { Link } from 'react-router-dom';
+import styles from './styles.module.scss';
 
 interface IMovieCardPropsInterface {
     movie: MovieEntity;

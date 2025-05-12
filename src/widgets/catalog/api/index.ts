@@ -1,31 +1,15 @@
-import { client } from "@/shared/api";
-import { Movies } from "@/shared/api";
+import { client, Movies, ApiConfig } from "@/shared";
 import { AxiosResponse } from "axios";
 
-type Config = {
-    'rating.kp': string | number;
-    movieLength?: string;
-    sortField: string;
-    year: string | number;
-    sortType: string;
-    limit: number;
-    'genres.name'?: string;
-    notNullFields: string[];
-    selectFields: string[];
-    type?: string;
-}
-
-const defaultConfig: Config = {
+const defaultConfig: ApiConfig = {
     notNullFields: ['name', 'id', 'rating.kp', 'poster.url', 'year'],
     'rating.kp': '5-9',
-    sortField: 'votes.filmCritics',
+    sortField: ['votes.filmCritics'],
     year: 2025,
     sortType: '-1',
     limit: 30,
     selectFields: ['name', 'id', 'rating', 'poster', 'year']
 }
-
-
 
 export const Queries = {
     async getMoviesByUrl(params: Record<string, string>, type: string) {
@@ -49,7 +33,7 @@ export const Queries = {
 
         if (sortQueryName) config = {
             ...config,
-            sortField: sortQueryName,
+            sortField: [sortQueryName],
         }
 
         if (type !== 'tv-series') config = {
@@ -58,7 +42,6 @@ export const Queries = {
             notNullFields: [...config.notNullFields, 'movieLength'],
             selectFields: [...config.selectFields, 'movieLength']
         }
-
 
         const raw: AxiosResponse<Movies> = await client.get('/movie', {
             params: config,

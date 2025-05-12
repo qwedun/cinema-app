@@ -1,5 +1,5 @@
+import { ArrowIcon } from '@/shared';
 import styles from './styles.module.scss';
-import { ArrowIcon } from '@/shared'
 
 interface IRouteButtonProps {
     right?: boolean;
@@ -11,7 +11,6 @@ export const RouteButton = ({right, onClick, invisible} : IRouteButtonProps) => 
 
     const invisibleStyle = invisible ? styles.invisible : '';
 
-
     const buttonStyle = right
         ? styles.right
         : styles.left
@@ -19,7 +18,6 @@ export const RouteButton = ({right, onClick, invisible} : IRouteButtonProps) => 
     const arrowStyle = right
         ? styles.rightArrow
         : ''
-
 
     return (
         <button onClick={onClick}

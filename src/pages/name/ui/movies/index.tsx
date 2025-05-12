@@ -1,12 +1,10 @@
-import styles from './styles.module.scss';
-
 import { MovieEntity } from "@/shared/api";
 import { MovieCard } from "@/entities";
+import styles from './styles.module.scss';
 
 interface IMoviesProps {
     data: MovieEntity[];
 }
-
 
 export const MovieList = ({data} : IMoviesProps) => {
     return (

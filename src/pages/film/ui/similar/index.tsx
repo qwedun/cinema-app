@@ -1,7 +1,6 @@
-import styles from './styles.module.scss';
-import { Carousel } from "@/shared";
-import { SimilarMovie, MovieEntity } from "@/shared/api";
+import { SimilarMovie, MovieEntity, Carousel } from "@/shared";
 import { MovieCard } from "@/entities";
+import styles from './styles.module.scss';
 
 interface ISimilarInterface {
     data: SimilarMovie[];
@@ -14,9 +13,11 @@ export const Similar = ({data}: ISimilarInterface) => {
                 Похожее
             </h3>
             <Carousel withButtons >
-                {data.map(movie => (
-                    <MovieCard movie={movie as MovieEntity} fillContainer={false}/>
-                ))}
+                {
+                    data.map(movie => (
+                        <MovieCard movie={movie as MovieEntity} fillContainer={false}/>
+                    ))
+                }
             </Carousel>
         </>
     )
