@@ -13,7 +13,7 @@ export const Avatar = ({person}: IAvatarProps) => {
     return (
         <Link to={`/name/${id}`} className={styles.container}>
             <div className={styles.imgWrapper}>
-                <img src={photo}/>
+                <img alt={name} src={photo} loading='lazy'/>
             </div>
             <span className={styles.name}>{name}</span>
             <span className={styles.actor}>{profession}</span>

@@ -13,7 +13,7 @@ export const Preview = ({person} : IPreviewProps) => {
     return (
         <div className={styles.container}>
             <div className={styles.imgContainer}>
-                <img className={styles.img} src={photo}/>
+                <img alt={name} className={styles.img} src={photo}/>
             </div>
             <div className={styles.info}>
                 <div>

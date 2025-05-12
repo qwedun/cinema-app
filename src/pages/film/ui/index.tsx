@@ -6,7 +6,6 @@ import { Facts } from "@/pages/film/ui/facts";
 import { Spinner } from "@/shared";
 import { useMovie } from "@/pages/film/api";
 
-
 export const Film = () => {
 
     const {

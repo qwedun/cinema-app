@@ -25,7 +25,14 @@ export const MovieCard = ({movie, fillContainer}: IMovieCardPropsInterface) => {
     return (
         <Link className={`${styles.container} ${style}`} to={`/films/${id}`}>
             <div className={styles.imageWrapper}>
-                <img className={styles.img} width='100%' height='100%' src={poster?.url}/>
+                <img
+                    loading='lazy'
+                    alt={movie.name}
+                    className={styles.img}
+                    width='100%'
+                    height='100%'
+                    src={poster?.url}
+                />
             </div>
             <div className={styles.information}>
                 <span className={styles.rating}>
