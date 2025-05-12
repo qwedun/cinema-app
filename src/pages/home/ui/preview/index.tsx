@@ -1,28 +1,25 @@
 import { BigMovieCard } from "@/pages/home/ui/big-movie-card";
-import { Carousel } from "@/shared";
-import { useState, useEffect } from "react";
-import { MovieEntity } from "@/shared/api";
-import { Queries } from "@/pages/home/api";
+import { Carousel, Spinner } from "@/shared";
+import { useFeatureMoviesQuery } from "@/pages/home/api";
 
 
 export const Preview = () => {
 
-    const [featuredMovies, setFeaturedMovies] = useState<MovieEntity[]>([]);
+    const {
+        movies,
+        isPending,
+        error
+    } = useFeatureMoviesQuery();
 
-    useEffect(() => {
-        Queries.featuredMovies().then(data => setFeaturedMovies(data));
-    }, []);
+    if (isPending) return (
+        <Spinner filled/>
+    )
 
-    return (
-        <>
-            {
-                featuredMovies.length &&
-                <Carousel withButtons>
-                    <BigMovieCard data={featuredMovies[1]}/>
-                    <BigMovieCard data={featuredMovies[2]}/>
-                    <BigMovieCard data={featuredMovies[0]}/>
-                </Carousel>
-            }
-        </>
+    else return (
+        <Carousel withButtons>
+            <BigMovieCard data={movies[1]}/>
+            <BigMovieCard data={movies[2]}/>
+            <BigMovieCard data={movies[0]}/>
+        </Carousel>
     )
 }

@@ -77,19 +77,26 @@ export const Catalog = ({type, title}: ICatalogProps) => {
                     {sort.name}
                 </Select>
             </div>
-            {isPending && <Spinner filled/>}
-            { data && (
-                <div className={styles.movies}>
-                    {data.docs.map(movie => (
-                        <MovieCard key={movie.id} movie={movie} fillContainer/>
-                    ))}
-                </div>
-            )}
-            { data && (
-                data.pages > 1 ? (
-                    <Pagination totalPages={data.pages}/>
-                ) : null
-            )}
+            {
+                isPending ? (
+                    <Spinner filled/>
+                    ) : (
+                        <>
+                            <div className={styles.movies}>
+                                {
+                                    data.docs.map(movie => (
+                                        <MovieCard key={movie.id} movie={movie} fillContainer/>
+                                    ))
+                                }
+                            </div>
+                            {
+                                data.pages > 1 ? (
+                                    <Pagination totalPages={data.pages}/>
+                                ) : null
+                            }
+                        </>
+                )
+            }
         </div>
     )
 }

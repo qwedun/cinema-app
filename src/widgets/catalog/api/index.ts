@@ -16,14 +16,15 @@ type Config = {
 }
 
 const defaultConfig: Config = {
-    notNullFields: ['name', 'id', 'rating.kp', 'poster.url', 'movieLength', 'year'],
+    notNullFields: ['name', 'id', 'rating.kp', 'poster.url', 'year'],
     'rating.kp': '5-9',
     sortField: 'votes.filmCritics',
     year: 2025,
     sortType: '-1',
     limit: 30,
-    selectFields: ['name', 'id', 'rating', 'poster', 'movieLength', 'year']
+    selectFields: ['name', 'id', 'rating', 'poster', 'year']
 }
+
 
 
 export const Queries = {
@@ -53,7 +54,9 @@ export const Queries = {
 
         if (type !== 'tv-series') config = {
             ...config,
-            movieLength: '1-999'
+            movieLength: '1-999',
+            notNullFields: [...config.notNullFields, 'movieLength'],
+            selectFields: [...config.selectFields, 'movieLength']
         }
 
 

@@ -1,7 +1,10 @@
 import { Movies, client } from "@/shared/api";
 import { AxiosResponse } from "axios";
+import {GENRES} from "@/shared";
+import {useQuery} from "@tanstack/react-query";
 
 type Config = Record<string, string | number | boolean>
+type Genres = 'comedy' | 'science' | 'newFilms' | 'family' | 'drama';
 
 const defaultConfig: Config = {
     'rating.kp': '5-9',
@@ -42,5 +45,37 @@ export const Queries = {
 
         return data.data.docs;
     }
+}
 
+export const useMovieByGenreQuery = (genre : Genres)  => {
+
+    const genreName = GENRES[genre].name;
+    const queryName = GENRES[genre].queryName;
+
+    const {data: movies, isPending, error} = useQuery({
+        queryKey: [genreName],
+        queryFn: () => Queries.movieByGenreQuery(queryName)
+    })
+
+    return {
+        genreName,
+        queryName,
+        movies,
+        isPending,
+        error
+    }
+}
+
+export const useFeatureMoviesQuery = () => {
+
+    const {data: movies, isPending, error} = useQuery({
+        queryKey: ['feature-movies-preview'],
+        queryFn: () => Queries.featuredMovies(),
+    })
+
+    return {
+        movies,
+        isPending,
+        error
+    }
 }
