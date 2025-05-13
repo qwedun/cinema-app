@@ -76,6 +76,12 @@ export interface FactInMovie {
     spoiler: boolean;
 }
 
+interface Image {
+    url: string;
+    movieId: string;
+    id: string;
+}
+
 export interface MovieEntity {
     id: number;
     name: string | null;
@@ -162,5 +168,5 @@ export interface ApiConfig {
 }
 
 export type Movies = Data<MovieEntity>;
-
+export type Images = Data<Image>;
 export type SearchMovies = Data<SearchMovieEntity>;

@@ -42,3 +42,42 @@
   padding: 0 80px;
   margin-top: 20px;
 }
+.grid {
+  position: relative;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+
+  &::before {
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0 0 55px 55px var(--color-black);
+
+  }
+  &::after{
+    content: "";
+    display: block;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    box-shadow: 0 0 55px 55px var(--color-black);
+
+  }
+}
+.img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.imgWrapper {
+  height: 250px;
+  margin-bottom: 15px;
+}

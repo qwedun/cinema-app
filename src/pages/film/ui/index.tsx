@@ -6,7 +6,7 @@ import { Facts } from "@/pages/film/ui/facts";
 import { Spinner } from "@/shared";
 import { useMovie } from "@/pages/film/api";
 
-export const Film = () => {
+const Film = () => {
 
     const {
         movie,
@@ -21,10 +21,12 @@ export const Film = () => {
     else if (movie) return (
         <>
             <Preview data={movie}/>
-            <Description data={movie.description}/>
+            <Description data={movie.description} id={movie.id}/>
             {movie.similarMovies?.length ? <Similar data={movie.similarMovies}/> : null}
             <Actors data={movie.persons}/>
             {movie.facts?.length ? <Facts data={movie.facts}/> : null}
         </>
     )
 }
+
+export default Film;

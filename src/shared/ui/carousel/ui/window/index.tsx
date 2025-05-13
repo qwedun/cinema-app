@@ -1,4 +1,4 @@
-import { MouseEvent, ReactNode, RefObject, useState } from "react";
+import { MouseEvent, ReactNode, RefObject, useState, memo } from "react";
 import { RouteButton } from "@/shared/ui/carousel/ui/route-button";
 import styles from './styles.module.scss';
 
@@ -15,12 +15,12 @@ interface IWindowProps {
     containerRef: RefObject<HTMLDivElement>;
 }
 
-export const Window = (Props: IWindowProps) => {
+export const Window = memo((Props: IWindowProps) => {
 
     const {
         windowRef, containerRef, rowLength,
         windowWidth, cardWidth, containerWidth,
-         withButtons, children
+        withButtons, children
     } = Props
 
     const [isDragging, setIsDragging] = useState(false);
@@ -37,8 +37,7 @@ export const Window = (Props: IWindowProps) => {
 
         if (translateX > 0) {
             setTranslateX(0);
-        }
-        else if (windowWidth + translateX < containerWidth) {
+        } else if (windowWidth + translateX < containerWidth) {
             if (cardWidth * rowLength <= containerWidth) setTranslateX(0)
             else setTranslateX(containerWidth - windowWidth)
 
@@ -78,19 +77,25 @@ export const Window = (Props: IWindowProps) => {
              onMouseMove={(e) => isDragging && handleMouseMove(e)}
              onMouseLeave={() => isDragging && handleMouseUp()}
         >
-            { withButtons &&
-                <RouteButton
-                    onClick={moveLeft}
-                    invisible={translateX + cardWidth / 2 >= 0}
-                />}
-            { withButtons &&
-                <RouteButton
-                    onClick={moveRight}
-                    invisible={
-                    windowWidth + translateX - cardWidth/2 < containerWidth
-                    || cardWidth * rowLength <= containerWidth}
-                    right
-                />}
+            {
+                withButtons && (
+                    <RouteButton
+                        onClick={moveLeft}
+                        invisible={translateX + cardWidth / 2 >= 0}
+                    />
+                )
+            }
+            {
+                withButtons && (
+                    <RouteButton
+                        onClick={moveRight}
+                        invisible={
+                        windowWidth + translateX - cardWidth / 2 < containerWidth
+                            || cardWidth * rowLength <= containerWidth}
+                        right
+                    />
+                )
+            }
             <div
                 ref={windowRef}
                 className={styles.window}
@@ -99,8 +104,8 @@ export const Window = (Props: IWindowProps) => {
                     'pointerEvents': !canUseLink ? 'none' : 'auto',
                 }}
             >
-                { children }
+                {children}
             </div>
         </div>
     )
-}
+})

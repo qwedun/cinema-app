@@ -13,7 +13,7 @@ export const MovieList = ({data} : IMovieListProps) => {
                 data.map(movie => (
                     <Link to={`films/${movie.id}`} className={styles.card} key={movie.id}>
                         <div className={styles.imgWrapper}>
-                            <img className={styles.img} src={movie?.poster?.url || 'https://image.openmoviedb.com/kinopoisk-ott-images/2439731/2a00000195b2e49ca94c8b91070542fa64af/orig'}/>
+                            <img className={styles.img} src={`https://st.kp.yandex.net/images/film_iphone/iphone360_${movie.id}.jpg`}/>
                         </div>
                         <div className={styles.info}>
                             <h3>{movie.name}</h3>

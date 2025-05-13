@@ -9,4 +9,5 @@ export type {
     Person,
     FactInMovie,
     ApiConfig,
+    Images
 } from "./types"

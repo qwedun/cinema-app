@@ -1,5 +1,6 @@
-import { MovieEntity } from "@/shared/api";
+import { MovieEntity } from "@/shared";
 import { Link } from 'react-router-dom';
+import { memo } from "react";
 import styles from './styles.module.scss';
 
 interface IMovieCardPropsInterface {
@@ -7,7 +8,7 @@ interface IMovieCardPropsInterface {
     fillContainer: boolean;
 }
 
-export const MovieCard = ({movie, fillContainer}: IMovieCardPropsInterface) => {
+export const MovieCard = memo(({movie, fillContainer}: IMovieCardPropsInterface) => {
 
     const {
         poster, name,
@@ -31,7 +32,7 @@ export const MovieCard = ({movie, fillContainer}: IMovieCardPropsInterface) => {
                     className={styles.img}
                     width='100%'
                     height='100%'
-                    src={poster?.url}
+                    src={`https://st.kp.yandex.net/images/film_iphone/iphone360_${id}.jpg`}
                 />
             </div>
             <div className={styles.information}>
@@ -52,4 +53,4 @@ export const MovieCard = ({movie, fillContainer}: IMovieCardPropsInterface) => {
             </div>
         </Link>
     )
-}
+})

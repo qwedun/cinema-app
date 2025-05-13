@@ -33,7 +33,7 @@ export const Category = ({genre} : ICategoryProps) => {
                     <Carousel withButtons>
                         {
                             movies.map(movie => (
-                                <MovieCard movie={movie} fillContainer={false}/>
+                                <MovieCard movie={movie} fillContainer={false} key={movie.id}/>
                             ))
                         }
                     </Carousel>

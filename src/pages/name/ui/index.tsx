@@ -5,7 +5,7 @@ import { useApi } from "@/pages/name/api";
 import { Button, Spinner } from "@/shared";
 import styles from './styles.module.scss';
 
-export const Name = () => {
+const Name = () => {
 
     const {
         person,
@@ -48,3 +48,5 @@ export const Name = () => {
         </div>
     )
 }
+
+export default Name;

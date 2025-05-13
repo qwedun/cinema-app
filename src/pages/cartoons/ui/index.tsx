@@ -1,5 +1,7 @@
 import { Catalog } from "@/widgets";
 
-export const Cartoons = () => (
+const Cartoons = () => (
     <Catalog title='Мультфильмы' type='cartoon'/>
 )
+
+export default Cartoons;

@@ -1,1 +1,0 @@
-export { Name } from "@/pages/name/ui";

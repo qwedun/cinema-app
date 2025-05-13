@@ -2,7 +2,7 @@ import { Genres } from "./genres";
 import { Category } from './category';
 import { Preview } from "@/pages/home/ui/preview";
 
-export const Home = () => {
+const Home = () => {
     return (
         <>
             <Preview/>
@@ -15,3 +15,5 @@ export const Home = () => {
         </>
     )
 }
+
+export default Home

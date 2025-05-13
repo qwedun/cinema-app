@@ -1,7 +1,9 @@
 import { Player } from "@/widgets";
 
-export const Watch = () => {
+const Watch = () => {
     return (
         <Player/>
     )
 }
+
+export default Watch;
