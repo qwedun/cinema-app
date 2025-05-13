@@ -1,12 +1,3 @@
 {
-  "routes": [
-    { "src": "/", "dest": "/" },
-    { "src": "/film", "dest": "/" },
-    { "src": "/films", "dest": "/" },
-    { "src": "/series", "dest": "/" },
-    { "src": "/cartoons", "dest": "/" },
-    { "src": "/films/[id]", "dest": "/" },
-    { "src": "/films/[id]/watch", "dest": "/" },
-    { "src": "/name[id]", "dest": "/" }
-  ]
+  "routes": [{ "src": "/[^.]+", "dest": "/" }]
 }
