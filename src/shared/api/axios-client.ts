@@ -1,7 +1,7 @@
 import axios, { CreateAxiosDefaults } from 'axios';
 
 const axiosConfig: CreateAxiosDefaults = {
-    baseURL: 'https://api.kinopoisk.dev/v1.4',
+    baseURL: 'https://api.poiskkino.dev/v1.5',
     headers: {
         'X-API-KEY': 'M66TQTM-GH445ZH-QQEDYSW-79KW4TT', //отказался от process.env, т.к не разобрался с конфигурацией .env файлов на Vercel
         'Content-Type': 'application/json'
